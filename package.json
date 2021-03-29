@@ -1,0 +1,9 @@
+{
+  "name": "skater-girl",
+  "version": "1.0.0",
+  "description": "Endless running game",
+  "main": "index.js",
+  "author": "Divyesh Patel",
+  "license": "MIT",
+  "private": true
+}
