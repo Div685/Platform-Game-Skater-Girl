@@ -1,5 +1,11 @@
-console.log('Hello World');
+import 'phaser';
 
-const messageEl = document.createElement('div');
-messageEl.textContent = 'I was put here by JavaScript! and it worked';
-document.body.appendChild(messageEl);
+import { SimpleScene } from './Scenes/simple-scene';
+
+const gameConfig = {
+  width: 680,
+  height: 400,
+  scene: SimpleScene
+};
+
+new Phaser.Game(gameConfig);
