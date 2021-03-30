@@ -38,13 +38,23 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
+          from: path.posix.join(
+            path.resolve(__dirname, 'assets').replace(/\\/g, '/'),
+            '**',
+            '*',
+          ),
+          // from: path.resolve(__dirname, 'assets'),
+          to: path.resolve(__dirname, 'dist'),
+          // noErrorOnMissing: true
+        },
+        {
           from: path.resolve(__dirname, 'index.html'),
           to: path.resolve(__dirname, 'dist'),
         },
-        {
-          from: path.resolve(__dirname, 'assets', '**', '*'),
-          to: path.resolve(__dirname, 'dist')
-        }
+        // {
+        //   from: path.resolve(__dirname, 'assets', '**', '*'),
+        //   to: path.resolve(__dirname, 'dist')
+        // }
       ],
     }),
 

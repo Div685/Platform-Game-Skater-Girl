@@ -3,8 +3,8 @@ import 'phaser';
 import { SimpleScene } from './Scenes/simple-scene';
 
 const gameConfig = {
-  width: 680,
-  height: 400,
+  width: 1000,
+  height: 600,
   scene: SimpleScene
 };
 
