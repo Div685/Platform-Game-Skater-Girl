@@ -1,1 +1,1 @@
-(()=>{console.log("Hello World");var e=document.createElement("div");e.textContent="I was put here by JavaScript!",document.body.appendChild(e)})();
+(()=>{console.log("Hello World");var e=document.createElement("div");e.textContent="I was put here by JavaScript! and it worked",document.body.appendChild(e)})();
