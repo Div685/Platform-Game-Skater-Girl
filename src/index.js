@@ -1,1 +1,5 @@
-console.log('Hello World')
+console.log('Hello World');
+
+const messageEl = document.createElement('div');
+messageEl.textContent = 'I was put here by JavaScript!';
+document.body.appendChild(messageEl);

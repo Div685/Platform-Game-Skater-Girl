@@ -1,0 +1,1 @@
+(()=>{console.log("Hello World");var e=document.createElement("div");e.textContent="I was put here by JavaScript!",document.body.appendChild(e)})();
