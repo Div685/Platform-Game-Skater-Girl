@@ -89,6 +89,9 @@ export default class PreloaderScene extends Phaser.Scene {
   // this.load.image('phaserLogo', 'assets/logo.png');
   this.load.image('muteButton', 'assets/ui/mute.png');
   this.load.image('unmuteButton', 'assets/ui/unmute.png');
+  this.load.image('playButton', 'assets/ui/play.png');
+  this.load.image('stopButton', 'assets/ui/stop_blue.png');
+
   this.load.image('logo', 'assets/skater-girl1.png');
 
 
@@ -165,7 +168,7 @@ export default class PreloaderScene extends Phaser.Scene {
 
 
   ready () {
-    this.scene.start('Title');
+    this.scene.start('Credits');
     this.readyCount++;
     if (this.readyCount === 2) {
       this.scene.start('Title');
