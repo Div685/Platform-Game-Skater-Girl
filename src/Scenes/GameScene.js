@@ -7,7 +7,7 @@ export default class GameScene extends Phaser.Scene {
 
   preload(){
     //load image
-    this.load.image('logo', 'assets/skater-girl.gif')
+    this.load.image('logo', 'assets/skater-girl1.png')
   }
 
   create(){
