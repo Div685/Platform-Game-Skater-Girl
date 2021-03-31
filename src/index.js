@@ -15,7 +15,7 @@ class Game extends Phaser.Game {
 
     // call Model class
     const model = new Model();
-    this.globals = { model };
+    this.globals = { model, bgMusic: null };
 
     // Call Scenes
     this.scene.add('Boot', BootScene);
