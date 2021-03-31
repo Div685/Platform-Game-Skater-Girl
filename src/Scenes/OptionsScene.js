@@ -10,9 +10,11 @@ export default class OptionsScene extends Phaser.Scene {
   }
 
   create() {
-    this.musicOn = true;
-    this.soundOn = true;
-    
+    // this.musicOn = true;
+    // this.soundOn = true;
+
+    this.model = this.sys.game.globals.model;
+
     this.text = this.add.text(300, 100, 'Options', { fontSize: 40 });
     this.musicButton = this.add.image(300, 200, 'playButton');
     this.musicText = this.add.text(350, 190, 'Music Enabled', { fontSize: 24 });
@@ -24,16 +26,18 @@ export default class OptionsScene extends Phaser.Scene {
     this.soundButton.setInteractive();
     
     this.musicButton.on('pointerdown', function () {
-      this.musicOn = !this.musicOn;
+      // this.musicOn = !this.musicOn;
+      this.model.musicOn = !this.model.musicOn;
       this.updateAudio();
     }.bind(this));
     
     this.soundButton.on('pointerdown', function () {
-      this.soundOn = !this.soundOn;
+      // this.soundOn = !this.soundOn;
+      this.model.soundOn = !this.model.soundOn;
       this.updateAudio();
     }.bind(this));
     
-    this.updateAudio();
+    
 
     this.menuButton = this.add.sprite(400, 500, 'blueButton1').setInteractive();
     this.menuText = this.add.text(0, 0, 'Menu', { fontSize: '32px', fill: '#fff' });
@@ -42,17 +46,18 @@ export default class OptionsScene extends Phaser.Scene {
     this.menuButton.on('pointerdown', function (pointer) {
       this.scene.start('Title');
     }.bind(this));
-    
+
+    this.updateAudio();
   }
 
   updateAudio() {
-    if (this.musicOn === false) {
+    if (this.model.musicOn === false) {
       this.musicButton.setTexture('stopButton');
     } else {
       this.musicButton.setTexture('playButton');
     }
    
-    if (this.soundOn === false) {
+    if (this.model.soundOn === false) {
       this.soundButton.setTexture('muteButton');
     } else {
       this.soundButton.setTexture('unmuteButton');

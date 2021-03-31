@@ -164,6 +164,13 @@ export default class PreloaderScene extends Phaser.Scene {
   this.load.image('bg-sky', 'assets/bg_sky.png');
   this.load.image('bg-cloud', 'assets/cloud.png');
 
+  // Music file
+  this.load.audio('bgMusic', 'assets/musics/theme_music.wav');
+  this.load.audio('jumpMusic', 'assets/musics/jump.wav');
+  this.load.audio('menuMusic', 'assets/musics/menu_music.wav');
+  this.load.audio('retroMusic', 'assets/musics/Retro-MusicNormal-02.wav');
+
+
   }
 
 
