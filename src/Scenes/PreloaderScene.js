@@ -163,6 +163,7 @@ export default class PreloaderScene extends Phaser.Scene {
   // Background and clouds
   this.load.image('bg-sky', 'assets/bg_sky.png');
   this.load.image('bg-cloud', 'assets/cloud.png');
+  this.load.image('ground-road', 'assets/ground_road.png');
 
   // Music file
   this.load.audio('bgMusic', 'assets/musics/theme_music.wav');
@@ -182,7 +183,4 @@ export default class PreloaderScene extends Phaser.Scene {
     }
   }
   
-  create() {
-
-  }
 }

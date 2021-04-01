@@ -7,10 +7,16 @@ export default class GameScene extends Phaser.Scene {
 
   preload(){
     //load image
-    this.load.image('logo', 'assets/skater-girl1.png')
+    // this.load.image('logo', 'assets/skater-girl1.png')
   }
 
   create(){
-    this.add.image(400, 300, 'logo').setScale(0.2);
+    // this.add.image(400, 300, 'logo').setScale(0.2);
+
+    // Create a Ground
+    const {height, width } = this.game.config;
+
+    this.ground = this.add.tileSprite(0, height, 88, 126, 'ground-road').setOrigin(0,1);
+
   }
 };
