@@ -130,18 +130,18 @@ export default class PreloaderScene extends Phaser.Scene {
   this.load.image('skater-girl-rollA-9', 'assets/skater_girl/roll_A/skater girl-roll B_09.png');
 
   // flip jump Images
-  this.load.image('skater-girl-jump-0', 'assets/skater_girl/jump_flip/skater girl-heel flip_00.png');
-  this.load.image('skater-girl-jump-1', 'assets/skater_girl/jump_flip/skater girl-heel flip_01.png');
-  this.load.image('skater-girl-jump-2', 'assets/skater_girl/jump_flip/skater girl-heel flip_02.png');
-  this.load.image('skater-girl-jump-3', 'assets/skater_girl/jump_flip/skater girl-heel flip_03.png');
-  this.load.image('skater-girl-jump-4', 'assets/skater_girl/jump_flip/skater girl-heel flip_04.png');
-  this.load.image('skater-girl-jump-5', 'assets/skater_girl/jump_flip/skater girl-heel flip_05.png');
-  this.load.image('skater-girl-jump-6', 'assets/skater_girl/jump_flip/skater girl-heel flip_06.png');
-  this.load.image('skater-girl-jump-7', 'assets/skater_girl/jump_flip/skater girl-heel flip_07.png');
-  this.load.image('skater-girl-jump-8', 'assets/skater_girl/jump_flip/skater girl-heel flip_08.png');
-  this.load.image('skater-girl-jump-9', 'assets/skater_girl/jump_flip/skater girl-heel flip_09.png');
-  this.load.image('skater-girl-jump-10', 'assets/skater_girl/jump_flip/skater girl-heel flip_10.png');
-  this.load.image('skater-girl-jump-11', 'assets/skater_girl/jump_flip/skater girl-heel flip_11.png');
+  this.load.image('skater-girl-jump-0', 'assets/skater_girl/heel_flip_jump/skater girl-heel flip_00.png');
+  this.load.image('skater-girl-jump-1', 'assets/skater_girl/heel_flip_jump/skater girl-heel flip_01.png');
+  this.load.image('skater-girl-jump-2', 'assets/skater_girl/heel_flip_jump/skater girl-heel flip_02.png');
+  this.load.image('skater-girl-jump-3', 'assets/skater_girl/heel_flip_jump/skater girl-heel flip_03.png');
+  this.load.image('skater-girl-jump-4', 'assets/skater_girl/heel_flip_jump/skater girl-heel flip_04.png');
+  this.load.image('skater-girl-jump-5', 'assets/skater_girl/heel_flip_jump/skater girl-heel flip_05.png');
+  this.load.image('skater-girl-jump-6', 'assets/skater_girl/heel_flip_jump/skater girl-heel flip_06.png');
+  this.load.image('skater-girl-jump-7', 'assets/skater_girl/heel_flip_jump/skater girl-heel flip_07.png');
+  this.load.image('skater-girl-jump-8', 'assets/skater_girl/heel_flip_jump/skater girl-heel flip_08.png');
+  this.load.image('skater-girl-jump-9', 'assets/skater_girl/heel_flip_jump/skater girl-heel flip_09.png');
+  this.load.image('skater-girl-jump-10', 'assets/skater_girl/heel_flip_jump/skater girl-heel flip_10.png');
+  this.load.image('skater-girl-jump-11', 'assets/skater_girl/heel_flip_jump/skater girl-heel flip_11.png');
 
   // Single push start images
   this.load.image('skater-girl-start-0', 'assets/skater_girl/push_single_start/skater girl-push single_00.png');
