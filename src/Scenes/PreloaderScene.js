@@ -165,13 +165,17 @@ export default class PreloaderScene extends Phaser.Scene {
   this.load.image('skater-girl-start-18', 'assets/skater_girl/push_single_start/skater girl-push single_18.png');
   
   // Obstacles
-  this.load.image('ob-box1', 'assets/box_obstacle1.png');
-  this.load.image('ob-box2', 'assets/box_obstacle2.png');
-  this.load.image('ob-sign', 'assets/sign_obstacle.png');
-  this.load.image('ob-spike-A', 'assets/spike A.png');
-  this.load.image('ob-spike-B', 'assets/spike B.png');
-  this.load.image('ob-spike-C', 'assets/spike C.png');
-  this.load.image('ob-spike-D', 'assets/spike D.png');
+  this.load.image('ob-b11', 'assets/box_obstacle1.png');
+  this.load.image('ob-b12', 'assets/box_obstacle2.png');
+  this.load.image('ob-5', 'assets/sign_obstacle.png');
+  this.load.image('ob-1', 'assets/spike A.png');
+  this.load.image('ob-2', 'assets/spike B.png');
+  this.load.image('ob-3', 'assets/spike C.png');
+  this.load.image('ob-4', 'assets/spike D.png');
+  this.load.spritesheet('enemy-bird', 'assets/enemy-bird.png', {
+    frameWidth: 32,
+    frameHeight: 32
+  })
 
   // Background and clouds
   this.load.image('bg-sky', 'assets/bg_sky.png');

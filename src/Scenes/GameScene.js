@@ -12,12 +12,13 @@ export default class GameScene extends Phaser.Scene {
 
   create(){
     // ground speed
-    this.gameSpeed = 10;
+    this.gameSpeed = 15;
 
     // Create a Ground
     const {height, width } = this.game.config;
 
     this.isGameRunning = false;
+    this.respawnTime = 0;
 
     // trigger for starting game
     this.startTrigger = this.physics.add.sprite(30, 200).setOrigin(0, 1).setImmovable();
@@ -34,6 +35,7 @@ export default class GameScene extends Phaser.Scene {
     console.log(this.skater_girl);
 
     this.obsticles = this.physics.add.group();
+
     this.initAnims();
     this.initStartTrigger();
     this.handleInput();
@@ -65,8 +67,7 @@ export default class GameScene extends Phaser.Scene {
           if (this.ground.width >= width) {
             this.ground.width = width;
             this.isGameRunning = true;
-            this.skater_girl.setVelocityX(0);
-            
+            this.skater_girl.setVelocityX(0);          
           }
         }
       });
@@ -150,7 +151,34 @@ export default class GameScene extends Phaser.Scene {
       repeat: -1
     });
 
+    this.anims.create({
+      key: 'enemy-flyball',
+      frames: this.anims.generateFrameNumbers('enemy-bird', {start: 0, end: 1}),
+      frameRate: 6,
+      repeat: -1
+    })
 
+  }
+
+  placeObsticle() {
+    const obsticleNum = Math.floor(Math.random() * 7) + 1;
+    const distance = Phaser.Math.Between(600, 900);
+
+    let obsticle;
+    if (obsticleNum > 6) {
+      const enemyHeight = [80, 100];
+      obsticle = this.obsticles.create(this.game.config.width + distance, this.game.config.height - enemyHeight[Math.floor(Math.random() * 2)], 'enemy-bird')
+        .setOrigin(0, 1);
+      obsticle.play('enemy-flyball', 1);
+      obsticle.body.height = obsticle.body.height / 1.5;
+    } else {
+      obsticle = this.obsticles.create(this.game.config.width + distance, this.game.config.height - 25, `ob-${obsticleNum}`)
+        .setOrigin(0, 1.5);
+        obsticle.setScale(0.3);
+      obsticle.body.offset.y = +10;
+    }
+
+    obsticle.setImmovable();
   }
 
   handleInput() {
@@ -168,18 +196,24 @@ export default class GameScene extends Phaser.Scene {
   }
 
   // 60 fps
-  update() {
+  update(time, delta) {
     if(!this.isGameRunning){ return; }
 
     this.ground.tilePositionX += this.gameSpeed;
 
+    Phaser.Actions.IncX(this.obsticles.getChildren(), -this.gameSpeed);
+
+    this.respawnTime += delta * this.gameSpeed * 0.08;
+
+    if (this.respawnTime >= 1500) {
+      this.placeObsticle();
+      this.respawnTime = 0;
+    }
+
     if(this.skater_girl.body.deltaAbsY() > 0) {
       this.skater_girl.play('girl-jump', true);
     } else {
-      // this.skater_girl.body.height <= 58
-      //   ? this.skater_girl.play('girl-run', true)
-        // : 
-        this.skater_girl.play('girl-run');
+        this.skater_girl.play('girl-run', true);
     }
   }
 };
