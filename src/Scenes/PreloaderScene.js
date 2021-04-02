@@ -167,7 +167,7 @@ export default class PreloaderScene extends Phaser.Scene {
   // Obstacles
   this.load.image('ob-b11', 'assets/box_obstacle1.png');
   this.load.image('ob-b12', 'assets/box_obstacle2.png');
-  this.load.image('ob-5', 'assets/sign_obstacle.png');
+  // this.load.image('ob-5', 'assets/sign_obstacle.png');
   this.load.image('ob-1', 'assets/spike A.png');
   this.load.image('ob-2', 'assets/spike B.png');
   this.load.image('ob-3', 'assets/spike C.png');
@@ -188,6 +188,9 @@ export default class PreloaderScene extends Phaser.Scene {
   this.load.audio('jumpMusic', 'assets/musics/jump.wav');
   this.load.audio('retroMusic', 'assets/musics/Retro-MusicNormal-02.wav');
 
+  // GameOver and Restart
+  this.load.image('game-over', 'assets/game-over.png');
+  this.load.image('restart', 'assets/restart.png');
 
   }
 

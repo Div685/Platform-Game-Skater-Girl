@@ -5,10 +5,6 @@ export default class GameScene extends Phaser.Scene {
     super('Game');
   }
 
-  preload(){
-    //load image
-    // this.load.image('logo', 'assets/skater-girl1.png')
-  }
 
   create(){
     // ground speed
@@ -19,23 +15,40 @@ export default class GameScene extends Phaser.Scene {
 
     this.isGameRunning = false;
     this.respawnTime = 0;
+    this.score = 0;
 
     // trigger for starting game
     this.startTrigger = this.physics.add.sprite(30, 200).setOrigin(0, 1).setImmovable();
 
     // Background
     this.sky = this.add.tileSprite(0,height, width, 0, 'bg-sky').setOrigin(0,1);
+    
     this.ground = this.add.tileSprite(0, height, width, 126, 'ground-road').setOrigin(0,1);
     this.skater_girl = this.physics.add.sprite(-105, height, 'skater-girl-roll-0')
     .setOrigin(0,1)
     .setScale(0.2)
-    .setBodySize(300, 100)
-    .setDepth(1).setBounce(0.2)
+    .setBodySize(300, 1700)
+    .setDepth(1)
     .setCollideWorldBounds(true)
     .setGravityY(5000);
 
-    // this.skater_girl.body.height = 244;
-      this.skater_girl.body.offset.y = 380;
+
+    this.gameOverScreen = this.add.container(width / 2, height / 2 - 50).setAlpha(0)
+    this.gameOverText = this.add.image(0, 0, 'game-over');
+    this.restart = this.add.image(width / 2, height / 2 - 150, 'restart').setInteractive();
+    this.gameOverScreen.add([
+      this.gameOverText,  this.restart
+    ])
+
+
+    this.environment = this.add.group();
+    this.environment.addMultiple([
+      this.add.image(width / 2, 300, 'bg-cloud'),
+      this.add.image(width - 80, 350, 'bg-cloud'),
+      this.add.image((width / 1.3), 400, 'bg-cloud'),
+    ]);
+
+    this.environment.setAlpha(0);
 
     this.obsticles = this.physics.add.group();
 
@@ -62,7 +75,7 @@ export default class GameScene extends Phaser.Scene {
         callbackScope: this,
         callback: () => {
           this.skater_girl.setVelocityX(80);
-          this.skater_girl.play('girl-run', 1);
+          this.skater_girl.play('girl-run', true);
 
           if (this.ground.width < width) {
             this.ground.width += 17 * 2;
@@ -71,7 +84,10 @@ export default class GameScene extends Phaser.Scene {
           if (this.ground.width >= width) {
             this.ground.width = width;
             this.isGameRunning = true;
-            this.skater_girl.setVelocityX(0);          
+            this.skater_girl.setVelocityX(0);
+            
+            this.environment.setAlpha(1);
+            startEvent.remove();
           }
         }
       });
@@ -166,11 +182,11 @@ export default class GameScene extends Phaser.Scene {
 
   placeObsticle() {
     const obsticleNum = Math.floor(Math.random() * 7) + 1;
-    const distance = Phaser.Math.Between(600, 900);
+    const distance = Phaser.Math.Between(400, 900);
 
     let obsticle;
-    if (obsticleNum > 6) {
-      const enemyHeight = [250, 500];
+    if (obsticleNum > 4) {
+      const enemyHeight = [250, 400];
       obsticle = this.obsticles.create(this.game.config.width + distance, this.game.config.height - enemyHeight[Math.floor(Math.random() * 2)], 'enemy-bird')
         .setOrigin(0, 1);
       obsticle.play('enemy-flyball', 1);
@@ -186,8 +202,22 @@ export default class GameScene extends Phaser.Scene {
   }
 
   handleInput() {
-    this.input.keyboard.on('keydown-SPACE', () => {
+    this.restart.on('pointerdown', () => {
+      this.skater_girl.setVelocityY(0);
+      this.skater_girl.body.height = 244;
+      this.skater_girl.body.offset.y = 380;
+      this.physics.resume();
+      this.obsticles.clear(true, true);
+      this.isGameRunning = true;
+      this.gameOverScreen.setAlpha(0);
+      // this.restart.setAlpha(0);
+      this.gameSpeed = 10;
+      this.environment.setAlpha(1);
+      this.anims.resumeAll();
+    });
 
+    this.input.keyboard.on('keydown-SPACE', () => {
+      this.skater_girl.setOrigin(0,1);
       if (!this.skater_girl.body.onFloor() || this.skater_girl.body.velocity.x > 0){
         return;
       }
@@ -214,10 +244,10 @@ export default class GameScene extends Phaser.Scene {
       this.anims.pauseAll();
       this.skater_girl.setTexture('skater-girl-roll-0');
       this.respawnTime = 0;
-      // this.environment.setAlpha(0);
+      this.environment.setAlpha(0);
       this.gameSpeed = 0;
       // this.gameOverScreen.remove(this.restart);
-      // this.gameOverScreen.setAlpha(1);
+      this.gameOverScreen.setAlpha(1);
       // send score to leaderboard
       // this.addScore(
       //   localStorage.getItem('current_player'),
@@ -236,6 +266,7 @@ export default class GameScene extends Phaser.Scene {
     this.ground.tilePositionX += this.gameSpeed;
 
     Phaser.Actions.IncX(this.obsticles.getChildren(), -this.gameSpeed);
+    Phaser.Actions.IncX(this.environment.getChildren(), -0.5);
 
     this.respawnTime += delta * this.gameSpeed * 0.08;
 
@@ -247,6 +278,12 @@ export default class GameScene extends Phaser.Scene {
     this.obsticles.getChildren().forEach(obsticle => {
       if (obsticle.getBounds().right < 0) {
         obsticle.destroy();
+      }
+    });
+
+    this.environment.getChildren().forEach(env => {
+      if (env.getBounds().right < 0) {
+        env.x = this.game.config.width + 30;
       }
     });
 
