@@ -187,6 +187,8 @@ export default class PreloaderScene extends Phaser.Scene {
   this.load.audio('bgMusic', 'assets/musics/theme_music.wav');
   this.load.audio('jumpMusic', 'assets/musics/jump.wav');
   this.load.audio('retroMusic', 'assets/musics/Retro-MusicNormal-02.wav');
+  this.load.audio('hit', './assets/hit.m4a');
+    this.load.audio('reach', './assets/reach.m4a');
 
   // GameOver and Restart
   this.load.image('game-over', 'assets/game-over.png');

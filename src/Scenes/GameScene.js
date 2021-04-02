@@ -17,6 +17,11 @@ export default class GameScene extends Phaser.Scene {
     this.respawnTime = 0;
     this.score = 0;
 
+    // Sounds
+    this.jumpSound = this.sound.add('jumpMusic', { volume: 0.2 });
+    this.hitSound = this.sound.add('hit', { volume: 0.2 });
+    this.reachSound = this.sound.add('reach', { volume: 0.2 });
+
     // trigger for starting game
     this.startTrigger = this.physics.add.sprite(30, 200).setOrigin(0, 1).setImmovable();
 
@@ -26,16 +31,15 @@ export default class GameScene extends Phaser.Scene {
     this.ground = this.add.tileSprite(0, height, width, 126, 'ground-road').setOrigin(0,1);
     this.skater_girl = this.physics.add.sprite(-105, height, 'skater-girl-roll-0')
     .setOrigin(0,1)
-    .setScale(0.2)
-    .setBodySize(300, 1700)
-    .setDepth(1)
     .setCollideWorldBounds(true)
+    .setScale(0.2)
+    .setBodySize(300, height * 2)
+    .setDepth(1)
     .setGravityY(5000);
-
 
     this.gameOverScreen = this.add.container(width / 2, height / 2 - 50).setAlpha(0)
     this.gameOverText = this.add.image(0, 0, 'game-over');
-    this.restart = this.add.image(width / 2, height / 2 - 150, 'restart').setInteractive();
+    this.restart = this.add.image(0, 80, 'restart').setInteractive();
     this.gameOverScreen.add([
       this.gameOverText,  this.restart
     ])
@@ -50,12 +54,24 @@ export default class GameScene extends Phaser.Scene {
 
     this.environment.setAlpha(0);
 
+     // Score
+     this.scoreText = this.add
+     .text(width, 0, '00000', { fill: '#535353', font: '900 20px Courier', resolution: 5 })
+     .setOrigin(1, 0)
+     .setAlpha(0);
+
+    this.highScoreText = this.add
+     .text(0, 0, '00000', { fill: '#535353', font: '900 20px Courier', resolution: 5 })
+     .setOrigin(1, 0)
+     .setAlpha(0);
+
     this.obsticles = this.physics.add.group();
 
     this.initAnims();
     this.initStartTrigger();
     this.initColliders();
     this.handleInput();
+    this.handleScore();
   }
 
   initStartTrigger() {
@@ -86,6 +102,7 @@ export default class GameScene extends Phaser.Scene {
             this.isGameRunning = true;
             this.skater_girl.setVelocityX(0);
             
+            this.scoreText.setAlpha(1);
             this.environment.setAlpha(1);
             startEvent.remove();
           }
@@ -180,6 +197,41 @@ export default class GameScene extends Phaser.Scene {
 
   }
 
+  // Score
+  handleScore() {
+    this.time.addEvent({
+      delay: 1000 / 10,
+      loop: true,
+      callbackScope: this,
+      callback: () => {
+        if (!this.isGameRunning) { return; }
+
+        this.score++;
+        this.gameSpeed += 0.01;
+
+        if (this.score % 100 === 0) {
+          this.reachSound.play();
+
+          // animation of the score text when hitting multiple of 100
+          this.tweens.add({
+            targets: this.scoreText,
+            duration: 100,
+            repeat: 3,
+            alpha: 0,
+            yoyo: true,
+          });
+        }
+
+        const score = Array.from(String(this.score), Number);
+        for (let i = 0; i < 5 - String(this.score).length; i++) {
+          score.unshift(0);
+        }
+
+        this.scoreText.setText(score.join(''));
+      },
+    });
+  }
+
   placeObsticle() {
     const obsticleNum = Math.floor(Math.random() * 7) + 1;
     const distance = Phaser.Math.Between(400, 900);
@@ -217,12 +269,14 @@ export default class GameScene extends Phaser.Scene {
     });
 
     this.input.keyboard.on('keydown-SPACE', () => {
-      this.skater_girl.setOrigin(0,1);
+      // this.skater_girl.setOrigin(0,1).setBodySize(300, height*.95);
       if (!this.skater_girl.body.onFloor() || this.skater_girl.body.velocity.x > 0){
         return;
       }
+
+      this.jumpSound.play();
       this.skater_girl.body.height = 244;
-      this.skater_girl.body.offset.y = 380;
+      this.skater_girl.body.offset.y = 0;//380;
 
       this.skater_girl.setVelocityY(-1800);
       this.skater_girl.setTexture('skater-girl-roll-0', 0);
@@ -231,13 +285,13 @@ export default class GameScene extends Phaser.Scene {
 
   initColliders() {
     this.physics.add.collider(this.skater_girl, this.obsticles, () => {
-      // this.highScoreText.x = this.scoreText.x - this.scoreText.width - 20;
+      this.highScoreText.x = this.scoreText.x - this.scoreText.width - 20;
 
-      // const highScore = this.highScoreText.text.substr(this.highScoreText.text.length - 5);
-      // const newScore = Number(this.scoreText.text) > Number(highScore) ? this.scoreText.text : highScore;
+      const highScore = this.highScoreText.text.substr(this.highScoreText.text.length - 5);
+      const newScore = Number(this.scoreText.text) > Number(highScore) ? this.scoreText.text : highScore;
 
-      // this.highScoreText.setText(`HIGH ${newScore}`);
-      // this.highScoreText.setAlpha(1);
+      this.highScoreText.setText(`HIGH: ${newScore}`);
+      this.highScoreText.setAlpha(1);
 
       this.physics.pause();
       this.isGameRunning = false;
@@ -246,7 +300,6 @@ export default class GameScene extends Phaser.Scene {
       this.respawnTime = 0;
       this.environment.setAlpha(0);
       this.gameSpeed = 0;
-      // this.gameOverScreen.remove(this.restart);
       this.gameOverScreen.setAlpha(1);
       // send score to leaderboard
       // this.addScore(
@@ -254,8 +307,8 @@ export default class GameScene extends Phaser.Scene {
       //   this.score,
       //   this.id,
       // );
-      // this.score = 0;
-      // this.hitSound.play();
+      this.score = 0;
+      this.hitSound.play();
     }, null, this);
   }
 
@@ -270,7 +323,7 @@ export default class GameScene extends Phaser.Scene {
 
     this.respawnTime += delta * this.gameSpeed * 0.08;
 
-    if (this.respawnTime >= 1500) {
+    if (this.respawnTime >= 2500) {
       this.placeObsticle();
       this.respawnTime = 0;
     }
