@@ -18,10 +18,10 @@ export default class GameScene extends Phaser.Scene {
     const {height, width } = this.game.config;
 
     this.ground = this.add.tileSprite(0, height, width, 126, 'ground-road').setOrigin(0,1);
-    this.skater_girl = this.physics.add.sprite(-90, 120, 'skater-girl-jump-3')
-    .setOrigin(0,3)
+    this.skater_girl = this.physics.add.sprite(-90, height, 'skater-girl-roll-0')
+    .setOrigin(0,1)
     .setScale(0.2)
-    .setBodySize(300, 1550, false)
+    .setBodySize(300, 1700)
     .setDepth(1)
     .setCollideWorldBounds(true)
     .setGravityY(5000);
@@ -92,10 +92,10 @@ export default class GameScene extends Phaser.Scene {
       }
 
       this.skater_girl.body.height = 244;
-      this.skater_girl.body.offset.y = 0;
+      this.skater_girl.body.offset.y = 380;
 
       this.skater_girl.setVelocityY(-1600);
-      this.skater_girl.setTexture('skater-girl-jump-3', 0);
+      this.skater_girl.setTexture('skater-girl-roll-0', 0);
     })
   }
 
@@ -106,7 +106,10 @@ export default class GameScene extends Phaser.Scene {
     if(this.skater_girl.body.deltaAbsY() > 0) {
       this.skater_girl.play('girl-jump', true);
     } else {
-      this.skater_girl.play('girl-run', true);
+      // this.skater_girl.body.height <= 58
+      //   ? this.skater_girl.play('girl-run', true)
+        // : 
+        this.skater_girl.play('girl-run', true);
     }
   }
 };
