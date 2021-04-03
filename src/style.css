@@ -6,3 +6,26 @@
 .logo {
   width: 100%
 }
+
+.bottom-part{
+  width: 100%;
+  background: rgb(234,61,104);
+}
+
+.logo_gif img {
+  height: 50vh;
+}
+
+canvas {
+      object-fit: contain;
+      border: 20px solid #000;
+      border-radius: 8px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      background-color: #fff
+}
+
+form {
+  
+}
