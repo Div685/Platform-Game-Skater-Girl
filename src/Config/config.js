@@ -3,7 +3,7 @@ import 'phaser';
 export default {
   type: Phaser.AUTO,
   parent: 'game-main',
-  width: 800,
+  width: 1000,
   height: 600,
   pixelArt: true,
   // transparent: true,

@@ -8,5 +8,5 @@ test('check player is exists',  () => {
 });
 
 test('check user is in database', () => {
-  expect(checkUser()).toBe(false);
+  expect(checkUser()).toBe(true);
 })
