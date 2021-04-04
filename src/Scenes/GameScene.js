@@ -211,7 +211,11 @@ export default class GameScene extends Phaser.Scene {
         if (!this.isGameRunning) { return; }
 
         this.score++;
-        this.gameSpeed += 0.01;
+        this.gameSpeed += 0.03;
+
+        if (this.score % 50 === 0) {
+          this.gameSpeed += 2.00;
+        }
 
         if (this.score % 100 === 0) {
           this.reachSound.play();
