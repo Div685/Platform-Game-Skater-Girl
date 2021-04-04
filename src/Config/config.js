@@ -8,11 +8,10 @@ export default {
   width: 1000,
   height: 600,
   pixelArt: true,
-  // transparent: true,
   physics: {
     default: 'arcade',
     arcade: {
-      debug: true,
+      debug: false,
     },
   },
 };

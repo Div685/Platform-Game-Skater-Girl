@@ -237,8 +237,6 @@ export default class GameScene extends Phaser.Scene {
   }
 
   addScore(name, score, id) {
-    // this.dom.gameButtons.classList.add('d-none');
-    // this.dom.loading.classList.remove('d-none');
     const content = {
       user: name,
       score,
@@ -256,12 +254,8 @@ export default class GameScene extends Phaser.Scene {
       .then((response) => response.json())
       .then((response) => {
         this.dom.loading.classList.add('d-none');
-        // this.dom.result.classList.remove('d-none');
-        // this.dom.result.innerHTML = response.result;
 
         setTimeout(() => {
-          // this.dom.result.classList.add('d-none');
-          // this.dom.gameButtons.classList.remove('d-none');
           this.gameOverScreen.add(this.restart);
         }, 2000);
       })
