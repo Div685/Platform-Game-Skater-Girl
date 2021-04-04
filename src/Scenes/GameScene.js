@@ -16,6 +16,7 @@ export default class GameScene extends Phaser.Scene {
     this.isGameRunning = false;
     this.respawnTime = 0;
     this.score = 0;
+    this.id = '2hSGx2YyT4LhAoeEUhVi';
 
     // Sounds
     this.jumpSound = this.sound.add('jumpMusic', { volume: 0.2 });
@@ -28,14 +29,15 @@ export default class GameScene extends Phaser.Scene {
     // Background
     this.sky = this.add.tileSprite(0,height, width, 0, 'bg-sky').setOrigin(0,1);
     
-    this.ground = this.add.tileSprite(0, height, width, 126, 'ground-road').setOrigin(0,1);
-    this.skater_girl = this.physics.add.sprite(-105, height, 'skater-girl-roll-0')
+    this.ground = this.add.tileSprite(0, height, width, 120, 'ground-road').setOrigin(0,1);
+    this.skater_girl = this.physics.add.sprite(-105, height, 'skater-girl-roll-0');
+    this.skater_girl
     .setOrigin(0,1)
     .setCollideWorldBounds(true)
     .setScale(0.2)
-    .setBodySize(300, height * 2)
+    .setBodySize(300, 1050)
     .setDepth(1)
-    .setGravityY(5000);
+    .setGravityY(2000);
 
     this.gameOverScreen = this.add.container(width / 2, height / 2 - 50).setAlpha(0)
     this.gameOverText = this.add.image(0, 0, 'game-over');
@@ -136,7 +138,8 @@ export default class GameScene extends Phaser.Scene {
         {key: 'skater-girl-roll-18'},
       ],
       frameRate: 36,    
-      repeat: -1
+      repeat: -1,
+      height: 0,
     });
 
     // Jump
@@ -232,6 +235,40 @@ export default class GameScene extends Phaser.Scene {
     });
   }
 
+  addScore(name, score, id) {
+    // this.dom.gameButtons.classList.add('d-none');
+    // this.dom.loading.classList.remove('d-none');
+    const content = {
+      user: name,
+      score,
+    };
+    form.reset();
+    fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${id}/scores/`,
+      {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(content),
+      })
+      .then((response) => response.json())
+      .then((response) => {
+        this.dom.loading.classList.add('d-none');
+        // this.dom.result.classList.remove('d-none');
+        // this.dom.result.innerHTML = response.result;
+
+        setTimeout(() => {
+          // this.dom.result.classList.add('d-none');
+          // this.dom.gameButtons.classList.remove('d-none');
+          this.gameOverScreen.add(this.restart);
+        }, 2000);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
   placeObsticle() {
     const obsticleNum = Math.floor(Math.random() * 7) + 1;
     const distance = Phaser.Math.Between(400, 900);
@@ -262,21 +299,19 @@ export default class GameScene extends Phaser.Scene {
       this.obsticles.clear(true, true);
       this.isGameRunning = true;
       this.gameOverScreen.setAlpha(0);
-      // this.restart.setAlpha(0);
       this.gameSpeed = 10;
       this.environment.setAlpha(1);
       this.anims.resumeAll();
     });
 
     this.input.keyboard.on('keydown-SPACE', () => {
-      // this.skater_girl.setOrigin(0,1).setBodySize(300, height*.95);
       if (!this.skater_girl.body.onFloor() || this.skater_girl.body.velocity.x > 0){
         return;
       }
 
       this.jumpSound.play();
-      this.skater_girl.body.height = 244;
-      this.skater_girl.body.offset.y = 0;//380;
+      this.skater_girl.body.height = 154;
+      this.skater_girl.body.offset.y = 380;
 
       this.skater_girl.setVelocityY(-1800);
       this.skater_girl.setTexture('skater-girl-roll-0', 0);
@@ -301,12 +336,13 @@ export default class GameScene extends Phaser.Scene {
       this.environment.setAlpha(0);
       this.gameSpeed = 0;
       this.gameOverScreen.setAlpha(1);
+      
       // send score to leaderboard
-      // this.addScore(
-      //   localStorage.getItem('current_player'),
-      //   this.score,
-      //   this.id,
-      // );
+      this.addScore(
+        localStorage.getItem('current_player'),
+        this.score,
+        this.id,
+      );
       this.score = 0;
       this.hitSound.play();
     }, null, this);
@@ -341,9 +377,10 @@ export default class GameScene extends Phaser.Scene {
     });
 
     if(this.skater_girl.body.deltaAbsY() > 0) {
-      this.skater_girl.play('girl-jump', true);
+      this.skater_girl.setOrigin(0, 1.5).play('girl-jump', true);
     } else {
-        this.skater_girl.play('girl-run', true);
+      this.skater_girl.setOrigin(0, 1.5).play('girl-run', true);
+        // this.skater_girl.play('girl-run', true);
     }
   }
 };

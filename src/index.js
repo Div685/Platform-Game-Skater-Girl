@@ -8,25 +8,30 @@ import addPlayer from './utils/addPlayer';
 import getData from './utils/getData'; 
 import sortArray from './utils/sortArray';
 import Game from './game';
+import domElement from './utils/domElement';
 
 // Dom element
-const buttonActions = document.getElementById('gameStart');
-const formAction = document.getElementById('formDiv');
-const displayUserName = document.getElementById('userName')
-const startGameButton = document.getElementById('btnStart');
-const leaderBoard = document.getElementById('btnLeaderBoard');
-const addUser = document.getElementById('btnSubmit');
-const inputUserName = document.getElementById('uName')
-const form  = document.getElementById('form');
-const logoGif = document.getElementById('logoGif');
-const menu = document.getElementById('btnMenu');
-const exitGame = document.getElementById('btnExit');
-const mainMenu = document.getElementById('mainMenu');
-const menuButton = document.getElementById('menuButton');
-const loading = document.getElementById('spinner');
-const playersList = document.getElementById('playersList');
-const players = document.getElementById('players');
-const back = document.getElementById('back');
+const dom = domElement();
+
+const {
+    buttonActions,
+    formAction,
+    displayUserName,
+    startGameButton,
+    leaderBoard,
+    addUser,
+    inputUserName,
+    form,
+    logoGif,
+    menu,
+    back,
+    players,
+    playersList,
+    loading,
+    menuButton,
+    mainMenu,
+    exitGame,
+} = dom;
 
 if (checkUser()) {
   formAction.classList.remove('d-flex');
@@ -81,6 +86,7 @@ startGameButton.addEventListener('click', (e) => {
     canvas.remove();
     buttonActions.classList.remove('d-none');
     logoGif.classList.remove('d-none');
+    menuButton.classList.remove('d-flex');
     menuButton.classList.add('d-none');
   });
 });
