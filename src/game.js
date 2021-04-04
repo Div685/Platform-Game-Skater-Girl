@@ -27,3 +27,5 @@ class Game extends Phaser.Game {
     this.scene.start('Boot');
   }
 }
+
+export default Game;

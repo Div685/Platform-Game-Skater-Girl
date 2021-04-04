@@ -1,5 +1,5 @@
 body {
-  background: rgb(234,61,104);
+  background: rgb(234,61,104) !important;
 }
 
 .img-banner {
@@ -27,11 +27,12 @@ body {
 
 canvas {
       object-fit: contain;
-      border: 20px solid #000;
+      border: 20px solid #5F4C5F;
       border-radius: 8px;
       margin-left: auto;
       margin-right: auto;
       display: block;
+      background: rgb(234,61,104);
 }
 
 form {
