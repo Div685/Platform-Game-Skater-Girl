@@ -143,45 +143,8 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('skater-girl-jump-10', 'assets/skater_girl/heel_flip_jump/skater girl-heel flip_10.png');
     this.load.image('skater-girl-jump-11', 'assets/skater_girl/heel_flip_jump/skater girl-heel flip_11.png');
 
-    // flip jump Images
-    this.load.image('skater-girl-jumpA-0', 'assets/skater_girl/jump_flip/skater girl-heel flip_00.png');
-    this.load.image('skater-girl-jumpA-1', 'assets/skater_girl/jump_flip/skater girl-heel flip_01.png');
-    this.load.image('skater-girl-jumpA-2', 'assets/skater_girl/jump_flip/skater girl-heel flip_02.png');
-    this.load.image('skater-girl-jumpA-3', 'assets/skater_girl/jump_flip/skater girl-heel flip_03.png');
-    this.load.image('skater-girl-jumpA-4', 'assets/skater_girl/jump_flip/skater girl-heel flip_04.png');
-    this.load.image('skater-girl-jumpA-5', 'assets/skater_girl/jump_flip/skater girl-heel flip_05.png');
-    this.load.image('skater-girl-jumpA-6', 'assets/skater_girl/jump_flip/skater girl-heel flip_06.png');
-    this.load.image('skater-girl-jumpA-7', 'assets/skater_girl/jump_flip/skater girl-heel flip_07.png');
-    this.load.image('skater-girl-jumpA-8', 'assets/skater_girl/jump_flip/skater girl-heel flip_08.png');
-    this.load.image('skater-girl-jumpA-9', 'assets/skater_girl/jump_flip/skater girl-heel flip_09.png');
-    this.load.image('skater-girl-jumpA-10', 'assets/skater_girl/jump_flip/skater girl-heel flip_10.png');
-    this.load.image('skater-girl-jumpA-11', 'assets/skater_girl/jump_flip/skater girl-heel flip_11.png');
-
-    // Single push start images
-    this.load.image('skater-girl-start-0', 'assets/skater_girl/push_single_start/skater girl-push single_00.png');
-    this.load.image('skater-girl-start-1', 'assets/skater_girl/push_single_start/skater girl-push single_01.png');
-    this.load.image('skater-girl-start-2', 'assets/skater_girl/push_single_start/skater girl-push single_02.png');
-    this.load.image('skater-girl-start-3', 'assets/skater_girl/push_single_start/skater girl-push single_03.png');
-    this.load.image('skater-girl-start-4', 'assets/skater_girl/push_single_start/skater girl-push single_04.png');
-    this.load.image('skater-girl-start-5', 'assets/skater_girl/push_single_start/skater girl-push single_05.png');
-    this.load.image('skater-girl-start-6', 'assets/skater_girl/push_single_start/skater girl-push single_06.png');
-    this.load.image('skater-girl-start-7', 'assets/skater_girl/push_single_start/skater girl-push single_07.png');
-    this.load.image('skater-girl-start-8', 'assets/skater_girl/push_single_start/skater girl-push single_08.png');
-    this.load.image('skater-girl-start-9', 'assets/skater_girl/push_single_start/skater girl-push single_09.png');
-    this.load.image('skater-girl-start-10', 'assets/skater_girl/push_single_start/skater girl-push single_10.png');
-    this.load.image('skater-girl-start-11', 'assets/skater_girl/push_single_start/skater girl-push single_11.png');
-    this.load.image('skater-girl-start-12', 'assets/skater_girl/push_single_start/skater girl-push single_12.png');
-    this.load.image('skater-girl-start-13', 'assets/skater_girl/push_single_start/skater girl-push single_13.png');
-    this.load.image('skater-girl-start-14', 'assets/skater_girl/push_single_start/skater girl-push single_14.png');
-    this.load.image('skater-girl-start-15', 'assets/skater_girl/push_single_start/skater girl-push single_15.png');
-    this.load.image('skater-girl-start-16', 'assets/skater_girl/push_single_start/skater girl-push single_16.png');
-    this.load.image('skater-girl-start-17', 'assets/skater_girl/push_single_start/skater girl-push single_17.png');
-    this.load.image('skater-girl-start-18', 'assets/skater_girl/push_single_start/skater girl-push single_18.png');
 
     // Obstacles
-    this.load.image('ob-b11', 'assets/box_obstacle1.png');
-    this.load.image('ob-b12', 'assets/box_obstacle2.png');
-    // this.load.image('ob-5', 'assets/sign_obstacle.png');
     this.load.image('ob-1', 'assets/spike A.png');
     this.load.image('ob-2', 'assets/spike B.png');
     this.load.image('ob-3', 'assets/spike C.png');
@@ -198,7 +161,6 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('ideal', 'assets/ideal_skater_girl.png');
 
     // Music file
-    this.load.audio('bgMusic', 'assets/musics/theme_music.wav');
     this.load.audio('jumpMusic', 'assets/musics/jump.wav');
     this.load.audio('retroMusic', 'assets/musics/Retro-MusicNormal-02.wav');
     this.load.audio('hit', './assets/hit.m4a');

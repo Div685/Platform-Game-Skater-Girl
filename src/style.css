@@ -34,3 +34,11 @@ canvas {
   display: block;
   background: rgb(234, 61, 104);
 }
+
+.feedback {
+  display: none;
+}
+
+.showItem {
+  display: block;
+}

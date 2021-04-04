@@ -41,9 +41,12 @@
 
       <div class="d-flex flex-column col-6 ">
         <div class="form d-flex flex-column align-items-center justify-content-center" id="formDiv">
+          <div class="alert text-capitalize feedback">
+            "name can not be empty"
+           </div>
           <form id="form">
             <p class="text-light h4 font-weight-bold">Add User</p>
-            <input id="uName" type="text" placeholder="Add Player Name" class="form-control w-75">
+            <input id="uName" type="text" required placeholder="Add Player Name" class="form-control w-75" >
             <button id="btnSubmit" class="btn btn-light mt-3 w-50">Submit</button>
           </form>
         </div>

@@ -35,6 +35,17 @@ const {
   exitGame,
 } = dom;
 
+const feedback = document.querySelector('.feedback');
+
+const showFeedback = (text, action) => {
+  feedback.classList.add('showItem', `alert-${action}`);
+  feedback.innerHTML = `<p>${text}</p>`;
+
+  setTimeout(() => {
+    feedback.classList.remove('showItem', `alert-${action}`);
+  }, 3000);
+};
+
 if (checkUser()) {
   formAction.classList.remove('d-flex');
   formAction.classList.add('d-none');
@@ -47,10 +58,15 @@ if (checkUser()) {
 addUser.addEventListener('click', (e) => {
   e.preventDefault();
   const nameValue = inputUserName.value;
+  if(inputUserName.value === '') {
+    showFeedback('User Name can not be empty', 'danger');
+    return;
+  }
   form.reset();
   formAction.classList.remove('d-flex');
   formAction.classList.add('d-none');
   loading.classList.remove('d-none');
+  
   if (nameValue !== '') {
     const user = addPlayer(nameValue);
     setTimeout(() => {
