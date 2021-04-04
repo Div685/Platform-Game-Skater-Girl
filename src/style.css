@@ -1,5 +1,5 @@
 body {
-  background: rgb(234,61,104) !important;
+  background: rgb(234, 61, 104) !important;
 }
 
 .img-banner {
@@ -9,16 +9,16 @@ body {
 
 .logo {
   width: 100%;
-  background: rgb(234,61,104);
+  background: rgb(234, 61, 104);
 }
 
-.bottom-part{
+.bottom-part {
   width: 100%;
-  background: rgb(234,61,104);
+  background: rgb(234, 61, 104);
 }
 
 .menu {
-  background: rgb(234,61,104);
+  background: rgb(234, 61, 104);
 }
 
 .logo_gif img {
@@ -26,15 +26,11 @@ body {
 }
 
 canvas {
-      object-fit: contain;
-      border: 20px solid #5F4C5F;
-      border-radius: 8px;
-      margin-left: auto;
-      margin-right: auto;
-      display: block;
-      background: rgb(234,61,104);
-}
-
-form {
-  
+  object-fit: contain;
+  border: 20px solid #5f4c5f;
+  border-radius: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  background: rgb(234, 61, 104);
 }

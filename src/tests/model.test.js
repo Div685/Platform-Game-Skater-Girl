@@ -8,5 +8,4 @@ test('check if music is playing', () => {
 test('check sound is playing', () => {
   const model = new Model();
   expect(model.soundOn).toBe(true);
-})
-
+});

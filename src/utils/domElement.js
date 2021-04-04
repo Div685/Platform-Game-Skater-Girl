@@ -2,12 +2,12 @@ const domElement = () => {
   // Dom element
   const buttonActions = document.getElementById('gameStart');
   const formAction = document.getElementById('formDiv');
-  const displayUserName = document.getElementById('userName')
+  const displayUserName = document.getElementById('userName');
   const startGameButton = document.getElementById('btnStart');
   const leaderBoard = document.getElementById('btnLeaderBoard');
   const addUser = document.getElementById('btnSubmit');
-  const inputUserName = document.getElementById('uName')
-  const form  = document.getElementById('form');
+  const inputUserName = document.getElementById('uName');
+  const form = document.getElementById('form');
   const logoGif = document.getElementById('logoGif');
   const menu = document.getElementById('btnMenu');
   const exitGame = document.getElementById('btnExit');
@@ -38,6 +38,6 @@ const domElement = () => {
     exitGame,
 
   };
-}
+};
 
 export default domElement;

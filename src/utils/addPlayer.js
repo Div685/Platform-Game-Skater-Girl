@@ -6,6 +6,6 @@ const addPlayer = (player) => {
   }
 
   return localStorage.getItem('current_player');
-}
+};
 
 export default addPlayer;

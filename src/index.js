@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import 'regenerator-runtime/runtime';
 import 'phaser';
 import './style.css';
@@ -5,7 +7,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import checkUser from './utils/checkUser';
 import addPlayer from './utils/addPlayer';
-import getData from './utils/getData'; 
+import getData from './utils/getData';
 import sortArray from './utils/sortArray';
 import Game from './game';
 import domElement from './utils/domElement';
@@ -14,23 +16,23 @@ import domElement from './utils/domElement';
 const dom = domElement();
 
 const {
-    buttonActions,
-    formAction,
-    displayUserName,
-    startGameButton,
-    leaderBoard,
-    addUser,
-    inputUserName,
-    form,
-    logoGif,
-    menu,
-    back,
-    players,
-    playersList,
-    loading,
-    menuButton,
-    mainMenu,
-    exitGame,
+  buttonActions,
+  formAction,
+  displayUserName,
+  startGameButton,
+  leaderBoard,
+  addUser,
+  inputUserName,
+  form,
+  logoGif,
+  menu,
+  back,
+  players,
+  playersList,
+  loading,
+  menuButton,
+  mainMenu,
+  exitGame,
 } = dom;
 
 if (checkUser()) {
@@ -99,24 +101,24 @@ leaderBoard.addEventListener('click', (e) => {
   playersList.classList.remove('d-none');
   back.classList.add('d-block');
   getData()
-    .then(function(array) {
-    loading.classList.add('d-none');
-    while (players.firstChild) {
-      players.removeChild(players.lastChild);
-    }
-    const newArray = sortArray(array);
-    for (let i = 0; i < newArray.length; i++) {
-      const player = document.createElement('li');
-      player.classList.add('list-group-item');
-      const user = document.createElement('strong');
-      const score = document.createElement('span');
-      user.innerHTML = newArray[i].user + ': ';
-      score.innerHTML = newArray[i].score;
-      player.appendChild(user);
-      player.appendChild(score);
-      players.appendChild(player);
-    }
-  });
+    .then((array) => {
+      loading.classList.add('d-none');
+      while (players.firstChild) {
+        players.removeChild(players.lastChild);
+      }
+      const newArray = sortArray(array);
+      for (let i = 0; i < newArray.length; i++) {
+        const player = document.createElement('li');
+        player.classList.add('list-group-item');
+        const user = document.createElement('strong');
+        const score = document.createElement('span');
+        user.innerHTML = `${newArray[i].user}: `;
+        score.innerHTML = newArray[i].score;
+        player.appendChild(user);
+        player.appendChild(score);
+        players.appendChild(player);
+      }
+    });
 
   back.addEventListener('click', (e) => {
     e.preventDefault();
@@ -124,5 +126,4 @@ leaderBoard.addEventListener('click', (e) => {
     playersList.classList.add('d-none');
     back.classList.add('d-none');
   });
-
-})
+});

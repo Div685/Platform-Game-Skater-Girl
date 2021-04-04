@@ -1,3 +1,5 @@
+/* global Phaser */
+
 import 'phaser';
 
 import config from './Config/config';
@@ -10,7 +12,7 @@ import CreditsScene from './Scenes/CreditsScene';
 import Model from './Model';
 
 class Game extends Phaser.Game {
-  constructor(){
+  constructor() {
     super(config);
 
     // call Model class
