@@ -30,6 +30,7 @@ export default class GameScene extends Phaser.Scene {
 
     // Background
     this.sky = this.add.tileSprite(0, height, width, 0, 'bg-sky').setOrigin(0, 1);
+    this.building_bg = this.add.tileSprite(0, height, width, 0, 'building-bg').setOrigin(0,1);
 
     this.ground = this.add.tileSprite(0, height, width, 50, 'ground-road').setOrigin(0, 1);
     this.skater_girl = this.physics.add.sprite(-105, height, 'skater-girl-roll-0');
@@ -48,6 +49,7 @@ export default class GameScene extends Phaser.Scene {
       this.gameOverText, this.restart,
     ]);
 
+    
 
     this.environment = this.add.group();
     this.environment.addMultiple([

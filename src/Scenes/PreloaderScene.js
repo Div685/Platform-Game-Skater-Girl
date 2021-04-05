@@ -96,7 +96,6 @@ export default class PreloaderScene extends Phaser.Scene {
 
 
     // Roll Run Images
-    this.load.image('skater-girl-roll-sprite', 'assets/skater_girl/roll_run/roll_spritesheet.png');
     this.load.image('skater-girl-roll-0', 'assets/skater_girl/roll_run/skater_girl_roll_B_00.png');
     this.load.image('skater-girl-roll-1', 'assets/skater_girl/roll_run/skater_girl_roll_B_01.png');
     this.load.image('skater-girl-roll-2', 'assets/skater_girl/roll_run/skater_girl_roll_B_02.png');
@@ -159,6 +158,7 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('bg-cloud', 'assets/cloud.png');
     this.load.image('ground-road', 'assets/ground_road.png');
     this.load.image('ideal', 'assets/ideal_skater_girl.png');
+    this.load.image('building-bg', 'assets/building_background.png');
 
     // Music file
     this.load.audio('jumpMusic', 'assets/musics/jump.wav');
